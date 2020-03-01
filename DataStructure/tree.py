@@ -11,7 +11,7 @@ class BinarySearchTree:
         else:
             self.root = None
             self._size = 0
-    
+
     def insert(self, valor):
         """Insere valor na árvore binária"""
         pai = None
@@ -25,11 +25,11 @@ class BinarySearchTree:
         if pai is None:
             self.root = NodeTree(valor)
         elif valor <= pai.valor:
-            pai.esq = NodeTree(valor) 
+            pai.esq = NodeTree(valor)
         else:
             pai.dir = NodeTree(valor)
         self.__increment()
-    
+
     def insert_list(self, lista):
         """Insere lista de valores na árvore"""
         for v in lista:
@@ -48,7 +48,7 @@ class BinarySearchTree:
             else:
                 no = pai.dir
         return False
-    
+
     def search_node(self, valor):
         """Busca se existe o valor na árvore binária, retorna o nodo se encontrado"""
         no = self.root
@@ -60,7 +60,7 @@ class BinarySearchTree:
             else:
                 no = no.dir
         return None
-    
+
     def __search_node_father(self, valor):
         """Busca se existe o valor na árvore binária, retorna o nodo pai se encontrado"""
         pai = self.root
@@ -81,13 +81,13 @@ class BinarySearchTree:
         if no.dir:
             no = self.__search_node_max_esq(no.dir)
         return no
-    
+
     def __search_node_min_dir(self, no):
         """Busca o menor valor na árvore binária pela esquerda do nó"""
         if no.esq:
             no = self.__search_node_min_dir(no.esq)
         return no
-    
+
     def show(self, tipo=""):
         """Retorna a representação da árvore na ordem desejada. Default: InOrder"""
         return self.__show(self.root, tipo)
@@ -115,7 +115,7 @@ class BinarySearchTree:
         if no.dir:
             rep += self.__in_order_show(no.dir)
         return rep
-    
+
     def __pre_order_show(self, no):
         rep = ""
         rep += ("{} ".format(no.valor))
@@ -124,7 +124,7 @@ class BinarySearchTree:
         if no.dir:
             rep += self.__pre_order_show(no.dir)
         return rep
-    
+
     def __pos_order_show(self, no):
         rep = ""
         if no.esq:
@@ -150,10 +150,11 @@ class BinarySearchTree:
             else:
                 return h_dir + 1
         return 0
-        
+
     def remove(self, valor=None):
-        if valor:
+        if valor is not None:
             nodo, father = self.__search_node_father(valor)
+            print(f"Removendo: {valor} - Valor pai: {father.valor}  -  Valor filho: {nodo.valor}")
             if nodo and father:
                 if nodo.dir is None and nodo.esq is None:
                     # caso folha
@@ -164,7 +165,7 @@ class BinarySearchTree:
                     elif father.esq and father.esq.valor == valor:
                         father.esq = None
                     self.__decrement()
-                    
+
                 elif nodo.dir and nodo.esq is None:
                     # caso nodo raiz com filho a direita
                     if father.dir and father.dir.valor == valor:
@@ -180,13 +181,15 @@ class BinarySearchTree:
                     elif father.esq and father.esq.valor == valor:
                         father.esq = nodo.esq
                     self.__decrement()
-                
+
                 else:
                     # caso nodo raiz com 2 filhos
                     if nodo.esq:
+                        print("No esq")
                         # Sobre o nó mais a direira da sub esquerda
                         no = self.__search_node_max_esq(nodo.esq)
                         aux = no.valor
+                        print(f"Subindo {aux}")
                         self.remove(aux)
                         nodo.valor = aux
                     else:
@@ -223,7 +226,7 @@ class BinarySearchTree:
             if no:
                 return no.valor
         return None
-    
+
     def max(self):
         """Retorna o maior valor armazenado"""
         no = self.root
@@ -235,9 +238,9 @@ class BinarySearchTree:
 
     def __len__(self):
         return self.size()
-    
+
     def __repr__(self):
         return self.show()
-    
+
     def __str__(self):
         return self.__repr__()

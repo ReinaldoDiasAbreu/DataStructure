@@ -1,13 +1,17 @@
+'''
+Teste de Todas as Funcionalidades da Árvore Binária de Busca implementadas
+'''
+
 from DataEstructure.tree import BinarySearchTree
 from DataEstructure.node import NodeTree
 
 
 if __name__ == "__main__":
     # Exemplo de uso do objeto BinarySearchTree
-    l = [15, 7, 5, 1, 13, 14, 20, 25, 30]
+    lista = [15, 7, 5, 1, 13, 14, 20, 25, 30]
     a = BinarySearchTree()
     a.insert(10) # insere um elemento
-    a.insert_list(l) # insere lista de elementos
+    a.insert_list(lista) # insere lista de elementos
     print("Impressão em Ordem: ", a)
     print("Impressão Pré Ordem: ", a.show("rlr"))
     print("Impressão Pós Ordem: ", a.show("lrr"))

@@ -4,7 +4,7 @@ DataStructure é uma biblioteca Python que contém a implementação de diversas
 
 - Dependências:
   Python (3.7 ou superior)
-- Instalar:
+- Instalar: ```pip install DataStructure```
 - Licença: MIT
 
 ### Estruturas Implementadas

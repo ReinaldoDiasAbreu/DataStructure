@@ -2,14 +2,15 @@ from DataStructure.node import Node
 
 
 class Queue:
-    """Chained Queue"""
+    """Chained Queue - First In First Out"""
+
     def __init__(self):
         self.head = None
         self.tail = None
         self._size = 0
 
     def push(self, elem):
-        """Insere do elem na fila."""
+        """Insere do elemento na fila."""
         no = Node(elem)
         if self.tail is None:
             self.tail = no

@@ -2,6 +2,7 @@ from DataStructure.node import Node
 
 
 class Stack:
+    """Stack - Last In First Out"""
 
     def __init__(self):
         self.top = None

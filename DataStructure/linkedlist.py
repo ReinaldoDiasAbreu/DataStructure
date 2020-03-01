@@ -2,7 +2,7 @@ from DataStructure.node import Node
 
 
 class LinkedList:
-    """Lista Encadeada"""
+    """Linked List"""
 
     def __init__(self):
         self.head = None

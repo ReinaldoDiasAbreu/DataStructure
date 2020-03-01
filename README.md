@@ -12,3 +12,4 @@ DataStructure é uma biblioteca Python que contém a implementação de diversas
 - Binary Search Tree
 - Stack
 - Chained Queue 
+- Linked List

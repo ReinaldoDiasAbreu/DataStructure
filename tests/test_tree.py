@@ -1,4 +1,6 @@
-from tree import BinarySearchTree
+from DataEstructure.tree import BinarySearchTree
+from DataEstructure.node import NodeTree
+
 
 if __name__ == "__main__":
     # Exemplo de uso do objeto BinarySearchTree
@@ -11,7 +13,7 @@ if __name__ == "__main__":
     print("Impressão Pós Ordem: ", a.show("lrr"))
     print("Tamanho: ", len(a))
     print("Altura: ", a.height())
-    print("Valor Min: {} - Max: {}".format(a.min(), a.max()))
+    print("Valor Min: {} - Valor Max: {}".format(a.min(), a.max()))
     print("Valor 13 existe? {}".format(a.search(13)))
     print("Valor 22 existe? {}".format(a.search(22)))
     a.remove(10)

@@ -1,44 +1,45 @@
-from node import NodeTree
+from DataEstructure.node import NodeTree
+
 
 class BinarySearchTree:
     """Arvore Binária de Busca"""
 
     def __init__(self, no=None):
         if no:
-            self.raiz = no
+            self.root = no
             self._size = self.__reset_size(no)
         else:
-            self.raiz = None
+            self.root = None
             self._size = 0
     
     def insert(self, valor):
         """Insere valor na árvore binária"""
         pai = None
-        no = self.raiz
-        while(no):
+        no = self.root
+        while no:
             pai = no
             if valor <= pai.valor:
                 no = pai.esq
             else:
                 no = pai.dir
         if pai is None:
-            self.raiz = NodeTree(valor)
+            self.root = NodeTree(valor)
         elif valor <= pai.valor:
             pai.esq = NodeTree(valor) 
         else:
             pai.dir = NodeTree(valor)
         self.__increment()
     
-    def insert_list(self, list):
+    def insert_list(self, lista):
         """Insere lista de valores na árvore"""
-        for v in list:
+        for v in lista:
             self.insert(v)
 
     def search(self, valor):
         """Busca se existe o valor na árvore binária, retorna True se encontrado"""
         pai = None
-        no = self.raiz
-        while(no):
+        no = self.root
+        while no:
             pai = no
             if valor == pai.valor:
                 return True
@@ -50,8 +51,8 @@ class BinarySearchTree:
     
     def search_node(self, valor):
         """Busca se existe o valor na árvore binária, retorna o nodo se encontrado"""
-        no = self.raiz
-        while(no):
+        no = self.root
+        while no:
             if valor == no.valor:
                 return no
             elif valor < no.valor:
@@ -62,9 +63,9 @@ class BinarySearchTree:
     
     def __search_node_father(self, valor):
         """Busca se existe o valor na árvore binária, retorna o nodo pai se encontrado"""
-        pai = self.raiz
-        no = self.raiz
-        while(no):
+        pai = self.root
+        no = self.root
+        while no:
             if valor == no.valor:
                 return no, pai
             elif valor < no.valor:
@@ -87,9 +88,9 @@ class BinarySearchTree:
             no = self.__search_node_min_dir(no.esq)
         return no
     
-    def show(self, type=""):
+    def show(self, tipo=""):
         """Retorna a representação da árvore na ordem desejada. Default: InOrder"""
-        return self.__show(self.raiz, type)
+        return self.__show(self.root, tipo)
 
     def __show(self, no, type):
         rep = ""
@@ -135,54 +136,54 @@ class BinarySearchTree:
 
     def height(self, no=None):
         """Retorna a altura da árvore"""
-        if no == None:
-            no = self.raiz
-        hesq = 0
-        hdir = 0
+        if no is None:
+            no = self.root
+        h_esq = 0
+        h_dir = 0
         if no:
             if no.esq:
-                hesq = self.height(no.esq)
+                h_esq = self.height(no.esq)
             if no.dir:
-                hdir = self.height(no.dir)
-            if hesq >= hdir:
-                return hesq + 1
+                h_dir = self.height(no.dir)
+            if h_esq >= h_dir:
+                return h_esq + 1
             else:
-                return hdir + 1
+                return h_dir + 1
         return 0
         
     def remove(self, valor=None):
         if valor:
             nodo, father = self.__search_node_father(valor)
             if nodo and father:
-                if nodo.dir == None and nodo.esq == None:
+                if nodo.dir is None and nodo.esq is None:
                     # caso folha
-                    if(nodo == father):
-                        self.raiz = None
-                    elif(father.dir and father.dir.valor == valor):
+                    if nodo == father:
+                        self.root = None
+                    elif father.dir and father.dir.valor == valor:
                         father.dir = None
-                    elif(father.esq and father.esq.valor == valor):
+                    elif father.esq and father.esq.valor == valor:
                         father.esq = None
                     self.__decrement()
                     
-                elif (nodo.dir and nodo.esq == None):
+                elif nodo.dir and nodo.esq is None:
                     # caso nodo raiz com filho a direita
-                    if(father.dir and father.dir.valor == valor):
+                    if father.dir and father.dir.valor == valor:
                         father.dir = nodo.dir
-                    elif(father.esq and father.esq.valor == valor):
+                    elif father.esq and father.esq.valor == valor:
                         father.esq = nodo.dir
                     self.__decrement()
 
-                elif (nodo.dir==None and nodo.esq):
+                elif nodo.dir is None and nodo.esq:
                     # caso nodo raiz com filho a esquerda
-                    if(father.dir and father.dir.valor == valor):
+                    if father.dir and father.dir.valor == valor:
                         father.dir = nodo.esq
-                    elif(father.esq and father.esq.valor == valor):
+                    elif father.esq and father.esq.valor == valor:
                         father.esq = nodo.esq
                     self.__decrement()
                 
                 else:
                     # caso nodo raiz com 2 filhos
-                    if(nodo.esq):
+                    if nodo.esq:
                         # Sobre o nó mais a direira da sub esquerda
                         no = self.__search_node_max_esq(nodo.esq)
                         aux = no.valor
@@ -216,7 +217,7 @@ class BinarySearchTree:
 
     def min(self):
         """Retorna o menor valor armazenado"""
-        no = self.raiz
+        no = self.root
         if no:
             no = self.__search_node_min_dir(no)
             if no:
@@ -225,7 +226,7 @@ class BinarySearchTree:
     
     def max(self):
         """Retorna o maior valor armazenado"""
-        no = self.raiz
+        no = self.root
         if no:
             no = self.__search_node_max_esq(no)
             if no:
@@ -240,4 +241,3 @@ class BinarySearchTree:
     
     def __str__(self):
         return self.__repr__()
-    

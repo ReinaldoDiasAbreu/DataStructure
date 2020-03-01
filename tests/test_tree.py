@@ -2,8 +2,8 @@
 Teste de Todas as Funcionalidades da Árvore Binária de Busca implementadas
 '''
 
-from DataEstructure.tree import BinarySearchTree
-from DataEstructure.node import NodeTree
+from DataStructure.tree import BinarySearchTree
+from DataStructure.node import NodeTree
 
 
 if __name__ == "__main__":

@@ -1,4 +1,4 @@
-from DataEstructure.stack import Stack
+from DataStructure.stack import Stack
 
 if __name__ == "__main__":
     pilha = Stack()

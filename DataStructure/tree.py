@@ -1,4 +1,4 @@
-from DataEstructure.node import NodeTree
+from DataStructure.node import NodeTree
 
 
 class BinarySearchTree:

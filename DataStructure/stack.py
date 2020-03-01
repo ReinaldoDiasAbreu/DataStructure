@@ -1,4 +1,4 @@
-from DataEstructure.node import Node
+from DataStructure.node import Node
 
 
 class Stack:
